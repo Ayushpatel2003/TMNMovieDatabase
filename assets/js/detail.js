@@ -48,47 +48,38 @@ const filterVideos = function (videoList) {
 };
 
 fetchDataFromServer(
-  `https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}&append_to_response=casts,videos,images,releases`,
-  function (movie) {
-    const {
-      backdrop_path,
-      poster_path,
-      title,
-      release_date,
-      runtime,
-      vote_average,
-      releases: {
-        countries: [{ certification }],
-      },
-      genres,
-      overview,
-      casts: { cast, crew },
-      videos: { results: videos },
-    } = movie;
+  `moviedetail?movie_id=${movieId}`,
+  function ({moviedata, castdata}) {
+  
+    var movie = moviedata[0];
+  
+    
 
-    document.title = `${title} - Tvflix`;
+
+
+  
+
+    document.title = `${movie.title} - TMN`;
 
     const movieDetail = document.createElement("div");
     movieDetail.classList.add("movie-detail");
     movieDetail.innerHTML = `
                 <div 
                 class="backdrop-image" 
-                style="background-image: url('${imageBaseURL}${
-      "w1280" || "original"
-    }${backdrop_path || poster_path}')">
+                style="background-image: src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}")"
                 </div>
 
                 <figure class="poster-box movie-poster">
                 <img
-                    src="${imageBaseURL}w342${poster_path}"
-                    alt="${title} poster"
+                    src="src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
+                    alt="${movie.title} poster"
                     class="img-cover"
                 />
                 </figure>
 
                 <div class="detail-box">
                 <div class="detail-content">
-                    <h1 class="heading">${title}</h1>
+                    <h1 class="heading">${movie.title}</h1>
 
                     <div class="meta-list">
                     <div class="meta-item">
@@ -98,35 +89,25 @@ fetchDataFromServer(
                         height="20"
                         alt="rating"
                         />
-                        <span class="span">${vote_average.toFixed(1)}</span>
+                        <span class="span">${movie.rank}</span>
                     </div>
 
                     <div class="separator"></div>
 
-                    <div class="meta-item">${runtime}m</div>
+                    <div class="meta-item">${movie.duration}m</div>
 
                     <div class="separator"></div>
 
-                    <div class="meta-item">${release_date.split("-")[0]}</div>
+                    <div class="meta-item">${movie.year}</div>
 
-                    <div class="meta-item card-badge">${certification}</div>
+                    
                     </div>
 
-                    <p class="genre">${getGenres(genres)}</p>
+                    
 
-                    <p class="overview">${overview}</p>
+                    <p class="overview">${movie.summary}</p>
 
-                    <ul class="detail-list">
-                    <div class="list-item">
-                        <p class="list-name">Starring</p>
-                        <p>${getCasts(cast)}</p>
-                    </div>
-
-                    <div class="list-item">
-                        <p class="list-name">Directed By</p>
-                        <p>${getDirectors(crew)}</p>
-                    </div>
-                    </ul>
+                    
                 </div>
 
                 <div class="title-wrapper">
@@ -139,23 +120,14 @@ fetchDataFromServer(
                 </div>
     `;
 
-    for (const { key, name } of filterVideos(videos)) {
-      const videoCard = document.createElement("div");
-      videoCard.classList.add("video-card");
-
-      videoCard.innerHTML = `
-        <iframe width="500" height="294" src="https://www.youtube.com/embed/${key}?&theme=dark&color=white&rel=0" frameborder="0" allowfullscreen="1" title="${name}" class="img-cover" loading="lazy"></iframe>
-        `;
-
-      movieDetail.querySelector(".slider-inner").appendChild(videoCard);
-    }
+    
 
     pageContent.appendChild(movieDetail);
 
-    fetchDataFromServer(
-      `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${api_key}&page=1`,
-      addSuggestedMovies
-    );
+    // fetchDataFromServer(
+    //   `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${api_key}&page=1`,
+    //   addSuggestedMovies
+    // );
   }
 );
 
