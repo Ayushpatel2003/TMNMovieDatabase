@@ -94,6 +94,13 @@ app.get('/movies/trending', (req, res) => {
     });
 });
 
+app.get('/search', (req, res) => {
+    const text = req.query.query;
+    db.query(`SELECT * FROM movie WHERE title LIKE '%${text}%'`, (err, rows) => {
+        res.json({ data: rows });
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
