@@ -11,38 +11,40 @@
 // });
 
 
-function signup() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+const postDataToServer = function (command, body, callback) {
+    const url = "http://localhost:3000/";
+    fetch(url+command, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: body
+    })
+    .then((response) => response.json())
+    .then((data) => callback(data));
+};
 
-  // Send signup data to the server (you'll implement this in server.js)
-  fetch('/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ username, password }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    alert(data.message);
-  });
+
+function signup() {
+    const signupUsername = document.getElementById('signupUsername').value;
+    const signupPassword = document.getElementById('signupPassword').value;
+
+    postDataToServer(
+        "signup", JSON.stringify({ username: signupUsername, password: signupPassword }),
+        (data) => {
+            console.log(data);
+        }
+    );
 }
 
 function signin() {
-  const signinUsername = document.getElementById('signinUsername').value;
-  const signinPassword = document.getElementById('signinPassword').value;
+    const signinUsername = document.getElementById('signinUsername').value;
+    const signinPassword = document.getElementById('signinPassword').value;
 
-  // Send signin data to the server (you'll implement this in server.js)
-  fetch('/signin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ username: signinUsername, password: signinPassword }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    alert(data.message);
-  });
+    postDataToServer(
+        "signin", JSON.stringify({ username: signinUsername, password: signinPassword }),
+        (data) => {
+            console.log(data);
+        }
+    );
 }

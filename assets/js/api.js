@@ -13,4 +13,17 @@ const fetchDataFromServer = function (command, callback, optionalParam) {
     .then((data) => callback(data, optionalParam));
 };
 
-export { imageBaseURL, api_key, fetchDataFromServer };
+const postDataToServer = function (command, body, callback) {
+    const url = "http://localhost:3000/";
+    fetch(url+command, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: body
+    })
+    .then((response) => response.json())
+    .then((data) => callback(data));
+};
+
+export { imageBaseURL, api_key, fetchDataFromServer, postDataToServer };

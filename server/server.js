@@ -38,29 +38,31 @@ app.post('/saveData', (req, res) => {
 app.post('/signup', (req, res) => {
     const { username, password } = req.body;
 
-    // Check if the username is already taken
-    if (users.some(user => user.username === username)) {
-        return res.json({ message: 'Username already taken' });
-    }
+    db.query(`SELECT * FROM users WHERE username="${username}" AND password="${password}"`, (err, rows) => {
+        if (rows.length == 0){
+            db.query(`INSERT INTO users (\`username\`, \`password\`) VALUES (\`${username}\`, \`${password}\`)`, (err, rows) => {
+                console.log(err, rows);
+                res.json({ inserted: true });
+            });
+        }else{
+            res.json({ user: rows[0], found: true, inserted: false });
+        }
+    });
 
-    // Save the user to the database
-    users.post({ username, password });
-
-    res.json({ message: 'Signup successful' });
 });
 
 // Signin endpoint
 app.post('/signin', (req, res) => {
     const { username, password } = req.body;
 
-    // Check if the username and password match a user in the database
-    const user = users.find(user => user.username === username && user.password === password);
+    db.query(`SELECT * FROM users WHERE username="${username}" AND password="${password}"`, (err, rows) => {
+        if (rows.length == 0){
+            res.json({ found: false });
+        }else{
+            res.json({ user: rows[0], found: true });
+        }
+    });
 
-    if (user) {
-        res.json({ message: 'Signin successful' });
-    } else {
-        res.json({ message: 'Invalid username or password' });
-    }
 });
 
 
