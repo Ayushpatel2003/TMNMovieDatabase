@@ -149,21 +149,49 @@
   <script src="script.js"></script>
   <script>
     function toggleForms() {
-      var signupForm = document.getElementById('signup');
-      var signinForm = document.getElementById('signin');
+        var signupForm = document.getElementById('signup');
+        var signinForm = document.getElementById('signin');
 
-      signupForm.style.display = (signupForm.style.display === 'none') ? 'block' : 'none';
-      signinForm.style.display = (signinForm.style.display === 'none') ? 'block' : 'none';
+        signupForm.style.display = (signupForm.style.display === 'none') ? 'block' : 'none';
+        signinForm.style.display = (signinForm.style.display === 'none') ? 'block' : 'none';
     }
 
+    const postDataToServer = function (command, body, callback) {
+        const url = "http://localhost:3000/";
+        fetch(url+command, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: body
+        })
+        .then((response) => response.json())
+        .then((data) => callback(data));
+    };
+
     function signup() {
-      // Handle signup logic here
-      alert('Sign Up clicked!');
+        const signupUsername = document.getElementById('signupUsername').value;
+        const signupPassword = document.getElementById('signupPassword').value;
+
+        postDataToServer(
+            "signup", JSON.stringify({ username: signupUsername, password: signupPassword }),
+            (data) => {
+                console.log(data);
+            }
+        );
     }
 
     function signin() {
-      // Handle signin logic here
-      alert('Sign In clicked!');
+        const signinUsername = document.getElementById('signinUsername').value;
+        const signinPassword = document.getElementById('signinPassword').value;
+
+        postDataToServer(
+            "signin", JSON.stringify({ username: signinUsername, password: signinPassword }),
+            (data) => {
+                console.log(data);
+                // if (data.found)
+            }
+        );
     }
   </script>
 </body>
