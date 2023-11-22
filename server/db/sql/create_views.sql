@@ -1,6 +1,6 @@
 -- Movie User Ratings (view 1)
 CREATE VIEW projectdb.MovieUserRatings AS
-SELECT u.fname, u.lname, m.title, r.review
+SELECT u.username, m.title, r.review
 FROM projectdb.users u
 JOIN projectdb.ratings r ON u.user_id = r.user_id
 JOIN projectdb.movie m ON r.movie_id = m.movie_id;
@@ -64,13 +64,6 @@ WHERE (
     WHERE d.director_id = d1.director_id
 ) > 1;
 
--- Genre popularity (view 9)
--- CREATE VIEW projectdb.GenrePopularity AS
--- SELECT g.genre_name, AVG(m.rank) AS avg_popularity
--- FROM projectdb.genre g
--- INNER JOIN projectdb.movie m ON g.genre_id = m.genre_id
--- GROUP BY g.genre_name;
-
 -- Directors Best Movies (view 10)
 CREATE VIEW projectdb.DirectorsBestMovies AS
 SELECT d.director_id, d.fname, d.lname, m.title AS best_movie
@@ -91,3 +84,15 @@ SELECT g.genre_id, g.genre_name, GROUP_CONCAT(m.movie_id) AS movie_id
 FROM projectdb.genre g
 LEFT JOIN projectdb.movie m ON g.genre_id = m.genre_id
 GROUP BY g.genre_id, g.genre_name;
+
+-- Top rated Movies (view 8)
+CREATE VIEW projectdb.topratedmovies AS
+SELECT * FROM projectdb.movie ORDER BY movie.rank DESC LIMIT 10;
+
+-- Newest Movies (view 9)
+CREATE VIEW projectdb.newestmovies AS
+SELECT * FROM projectdb.movie ORDER BY movie.year DESC LIMIT 10;
+
+-- Random Movies
+CREATE VIEW projectdb.randommovies AS
+SELECT * FROM projectdb.movie ORDER BY RAND() DESC LIMIT 5;
