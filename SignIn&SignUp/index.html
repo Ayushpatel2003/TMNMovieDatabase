@@ -149,32 +149,43 @@
   <script src="script.js"></script>
   <script>
     function toggleForms() {
-      var signupForm = document.getElementById('signup');
-      var signinForm = document.getElementById('signin');
+        var signupForm = document.getElementById('signup');
+        var signinForm = document.getElementById('signin');
 
-      signupForm.style.display = (signupForm.style.display === 'none') ? 'block' : 'none';
-      signinForm.style.display = (signinForm.style.display === 'none') ? 'block' : 'none';
+        signupForm.style.display = (signupForm.style.display === 'none') ? 'block' : 'none';
+        signinForm.style.display = (signinForm.style.display === 'none') ? 'block' : 'none';
     }
 
+    const postDataToServer = function (command, body, callback) {
+        const url = "http://localhost:3000/";
+        fetch(url+command, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: body
+        })
+        .then((response) => response.json())
+        .then((data) => callback(data));
+    };
+
     function signup() {
-      // Handle signup logic here
-      alert('Sign Up clicked!');
+        const signupUsername = document.getElementById('signupUsername').value;
+        const signupPassword = document.getElementById('signupPassword').value;
+
+        postDataToServer(
+            "signup", JSON.stringify({ username: signupUsername, password: signupPassword }),
+            (data) => {
+                console.log(data);
+            }
+        );
 
       toggleForms();
     }
 
     function signin() {
-     // For simplicity, let's assume a successful login with the username 'user' and password 'password'
-     var enteredUsername = document.getElementById('signinUsername').value;
-      var enteredPassword = document.getElementById('signinPassword').value;
-
-      if (enteredUsername === 'user' && enteredPassword === 'password') {
-        alert('Login Successful!');
-        // Redirect to the home page (replace 'home.html' with your actual home page)
-        window.location.href = 'index.html';
-      } else {
-        alert('Login Failed. Please check your username and password.');
-      }
+      // Handle signin logic here
+      alert('Sign In clicked!');
     }
   </script>
 </body>
