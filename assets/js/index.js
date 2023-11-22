@@ -8,6 +8,8 @@ import { createMovieCard } from "./movie-card.js";
 import { search } from "./search.js";
 
 const pageContent = document.querySelector("[page-content]");
+const userId = window.localStorage.getItem("UserId");
+
 
 sidebar();
 
@@ -36,6 +38,18 @@ const genreList = {
         return newGenreList.join(", ");
     },
 };
+
+
+if (userId != undefined){
+    fetchDataFromServer(
+        `user?user_id=${userId}`,
+        function ({data}){
+            const user = data[0];
+            console.log("Logged in as: "+user.username);
+        }
+    )
+}
+
 
 fetchDataFromServer(
     "genres",

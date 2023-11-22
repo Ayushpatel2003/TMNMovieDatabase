@@ -64,6 +64,12 @@ app.post('/signin', (req, res) => {
 
 });
 
+app.get('/user', (req, res) => {
+    db.query(`SELECT * FROM users WHERE user_id IN (${req.query.user_id})`, (err, rows) => {
+        res.json({ data: rows });
+    });
+});
+
 
 app.get('/moviedetail', (req, res) => {
     db.query(`SELECT * FROM movie WHERE movie_id IN (${req.query.movie_id})` , (err, movierows) => {
