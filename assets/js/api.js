@@ -1,21 +1,15 @@
-"use strict";
+const GitHubLink = "https://github.com/Ayushpatel2003/TMNMovieDatabase";
+const ImageBaseURL = "https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/";
+const ApiBaseURL = "http://localhost:3000/";
 
-const api_key = "829a43a98259bc44cae297489c7e3bba";
-const imageBaseURL = "https://image.tmdb.org/t/p/";
-
-// Fetch data from a server using the 'url' and pass the result in JSON data to a 'callback' function along with an optional parameter if has 'optionalParam'
-
-
-const fetchDataFromServer = function (command, callback, optionalParam) {
-    const url = "http://localhost:3000/";
-    fetch(url+command)
+function fetchDataFromServer(command, callback, optionalParam) {
+    fetch(ApiBaseURL+command)
     .then((response) => response.json())
     .then((data) => callback(data, optionalParam));
-};
+}
 
-const postDataToServer = function (command, body, callback) {
-    const url = "http://localhost:3000/";
-    fetch(url+command, {
+function postDataToServer(command, body, callback) {
+    fetch(ApiBaseURL+command, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,6 +18,4 @@ const postDataToServer = function (command, body, callback) {
     })
     .then((response) => response.json())
     .then((data) => callback(data));
-};
-
-export { imageBaseURL, api_key, fetchDataFromServer, postDataToServer };
+}

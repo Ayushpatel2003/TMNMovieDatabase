@@ -1,20 +1,9 @@
-"use strict";
-
-import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
-
-import { sidebar } from "./sidebar.js";
-
-import { createMovieCard } from "./movie-card.js";
-
-import { search } from "./search.js";
-
-const movieId = window.localStorage.getItem("movieId");
-
 const pageContent = document.querySelector("[page-content]");
+const movieId = window.localStorage.getItem("movieId");
 
 sidebar();
 
-const getGenres = function (genreList) {
+function getGenres(genreList) {
     const newGenreList = [];
     for (var i=0; i<genreList.length; ++i){
         newGenreList.push(genreList[i].genre_name);
@@ -22,7 +11,7 @@ const getGenres = function (genreList) {
     return newGenreList.join(", ");
 };
 
-const getCasts = function (castList) {
+function getCasts(castList) {
     const newCastList = [];
     for (let i = 0, len = castList.length; i < len && len && i < 10; i++) {
         newCastList.push(castList[i].fname + " " + castList[i].lname);
@@ -30,7 +19,7 @@ const getCasts = function (castList) {
     return newCastList.join(", ");
 };
 
-const getDirectors = function (directorList) {
+function getDirectors(directorList) {
     const newDirectorList = [];
     for (var i=0; i<directorList.length; ++i){
         newDirectorList.push(directorList[i].fname + " " + directorList[i].lname);
@@ -39,7 +28,7 @@ const getDirectors = function (directorList) {
 };
 
 // returns only trailers and teasers as array
-const filterVideos = function (videoList) {
+function filterVideos(videoList) {
     return videoList.filter(
         ({ type, site }) =>
         (type === "Trailer" || type === "Teaser") && site === "Youtube"
@@ -51,23 +40,19 @@ fetchDataFromServer(
     `moviedetail?movie_id=${movieId}`,
     function ({moviedata, castdata, directorsdata, genredata}) {
         const movie = moviedata[0];
-        console.log(movie, castdata, genredata);
-
         document.title = `${movie.title} - TMN`;
-
-        const imageBaseURL = "https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/";
 
         const movieDetail = document.createElement("div");
         movieDetail.classList.add("movie-detail");
         movieDetail.innerHTML = `
         <div
         class="backdrop-image"
-        style="background-image: url('${imageBaseURL}${movie.backdrop_id || movie.poster_id}')">
+        style="background-image: url('${ImageBaseURL}${movie.backdrop_id || movie.poster_id}')">
         </div>
 
         <figure class="poster-box movie-poster">
         <img
-        src="${imageBaseURL}${movie.poster_id}"
+        src="${ImageBaseURL}${movie.poster_id}"
         alt="${movie.title} poster"
         class="img-cover"
         />

@@ -1,12 +1,3 @@
-"use strict";
-
-// import all components and functions
-
-import { sidebar } from "./sidebar.js";
-import { api_key, imageBaseURL, fetchDataFromServer } from "./api.js";
-import { createMovieCard } from "./movie-card.js";
-import { search } from "./search.js";
-
 const pageContent = document.querySelector("[page-content]");
 const userId = window.localStorage.getItem("UserId");
 
@@ -18,8 +9,7 @@ const homePageSections = [
     {
         title: "Newest Movies",
         path: "movies/newest",
-    },
-    {
+    }, {
         title: "Top Rated Movies",
         path: "movies/top_rated",
     },
@@ -90,7 +80,7 @@ const heroBanner = function ({ data }) {
 
         sliderItem.innerHTML = `
         <img
-        src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
+        src="${ImageBaseURL}${movie.poster_id}"
         alt="${movie.title}"
         class="img-cover"
         loading="${i === 0 ? "eager" : "lazy"}"
@@ -128,7 +118,7 @@ const heroBanner = function ({ data }) {
 
         controlItem.innerHTML = `
         <img
-        src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
+        src="${ImageBaseURL}${movie.poster_id}"
         alt="Slide to ${movie.title}"
         loading="lazy"
         draggable="false"

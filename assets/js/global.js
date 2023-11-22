@@ -1,5 +1,3 @@
-"use strict";
-
 // Add event on multiple elements
 
 const addEventOnElements = function (elements, eventType, callback) {

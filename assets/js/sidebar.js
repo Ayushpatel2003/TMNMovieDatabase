@@ -1,13 +1,8 @@
-"use strict";
-
-import { api_key, fetchDataFromServer } from "./api.js";
-
-export function sidebar() {
+function sidebar() {
     // Fetch all genres then change genre format
     const genreList = {};
 
     fetchDataFromServer(
-        // `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`,
         "genres",
         function ({ data }) {
             for (const { genre_id, genre_name } of data) {
@@ -27,7 +22,7 @@ export function sidebar() {
     </div>
     <div class="sidebar-footer">
     <p class="copyright">Copyright 2023</p>
-    <a href="https://github.com/Ayushpatel2003/TMNMovieDatabase" style="font-size:15px">
+    <a href="${GitHubLink}" style="font-size:15px">
         <img src="https://img.icons8.com/ios-filled/25/ffffff/github.png" alt="github"/>
         Group 11
     </a>
@@ -40,7 +35,7 @@ export function sidebar() {
         for (const [genreId, genreName] of Object.entries(genreList)) {
             const link = document.createElement("a");
             link.classList.add("sidebar-link");
-            link.setAttribute("href", "./movie-list.html");
+            link.setAttribute("href", "./movie_list.html");
             link.setAttribute("menu-close", "");
             link.setAttribute(
                 "onclick",
