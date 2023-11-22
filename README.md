@@ -1,16 +1,15 @@
-# Tvflix 🎞
+# TMN 🎞
 
-![image](https://github.com/Shivam171/Tvflix/assets/66107248/cc368a2b-23d8-4568-b4fe-7c36fe8a62c3)
+![image](https://cdn.discordapp.com/attachments/994702763499986954/1176757155861385226/image.png?ex=65700781&is=655d9281&hm=b93fa9a2c6f0e388cd6363729ac68a7aa14a719a22a4a5a9a21f78f98dd5b5bf&)
+
+# How to Run
+
+1. Download all the Files
 
 ## About this repo
 
-This Project is a Simple Vanilla JS Project which demonstrates the following
-1. Responsive web app leveraging Postman and the TMDB API for seamless data retrieval and comprehensive movie details.
-2. Implemented an intuitive search feature enabling users to easily find movies, providing essential information like cast, synopsis, and ratings, enhancing the user experience.
-3. Created a genre-based movie recommendation system within the app, allowing users to explore and discover movies based on their preferred genres, delivering personalized movie suggestions.
 
-This project Template can be used to build bigger projects
 
-## Contributing
 
-Contributions are welcome! If you encounter any bugs or have suggestions for new features, please open an issue or submit a pull request.
+
+
