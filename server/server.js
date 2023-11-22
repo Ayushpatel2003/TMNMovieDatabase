@@ -40,12 +40,11 @@ app.post('/signup', (req, res) => {
 
     db.query(`SELECT * FROM users WHERE username="${username}" AND password="${password}"`, (err, rows) => {
         if (rows.length == 0){
-            db.query(`INSERT INTO users (\`username\`, \`password\`) VALUES (\`${username}\`, \`${password}\`)`, (err, rows) => {
-                console.log(err, rows);
-                res.json({ inserted: true });
+            db.query(`INSERT INTO users (\`username\`, \`password\`) VALUES ('${username}', '${password}')`, (err, rows) => {
+                res.json({ user_id: rows.user_id, inserted: true });
             });
         }else{
-            res.json({ user: rows[0], found: true, inserted: false });
+            res.json({ user_id: rows[0].user_id, found: true, inserted: false });
         }
     });
 
@@ -59,7 +58,7 @@ app.post('/signin', (req, res) => {
         if (rows.length == 0){
             res.json({ found: false });
         }else{
-            res.json({ user: rows[0], found: true });
+            res.json({ user_id: rows[0].user_id, found: true });
         }
     });
 
