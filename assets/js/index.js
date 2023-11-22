@@ -76,7 +76,7 @@ const heroBanner = function ({ data }) {
 
         sliderItem.innerHTML = `
         <img
-        src="./assets/images/slider-banner.jpg"
+        src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
         alt="${movie.title}"
         class="img-cover"
         loading="${i === 0 ? "eager" : "lazy"}"
