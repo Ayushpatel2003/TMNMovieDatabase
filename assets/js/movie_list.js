@@ -4,6 +4,7 @@ const urlParam = window.localStorage.getItem("urlParam");
 const pageContent = document.querySelector("[page-content]");
 
 sidebar();
+getUserProfile();
 
 let currentPage = 1;
 let totalPages = 0;

@@ -1,8 +1,9 @@
 const pageContent = document.querySelector("[page-content]");
-const userId = window.localStorage.getItem("UserId");
 
 
 sidebar();
+getUserProfile();
+
 
 // Home page sections (Top rated, Upcoming, Trending Movies)
 const homePageSections = [
@@ -28,17 +29,6 @@ const genreList = {
         return newGenreList.join(", ");
     },
 };
-
-
-if (userId != undefined){
-    fetchDataFromServer(
-        `user?user_id=${userId}`,
-        function ({data}){
-            const user = data[0];
-            console.log("Logged in as: "+user.username);
-        }
-    )
-}
 
 
 fetchDataFromServer(

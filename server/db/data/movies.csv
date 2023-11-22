@@ -1,11 +1,26 @@
-movie_id,title,duration,year,age_rating,rank,summary,genre_id,poster_id
-1,The Shawshank Redemption,142,1994,R,93,"Two imprisoned men bond over several years, finding solace and eventual redemption through acts of common decency.",5,Shawshank.webp
-2,The Godfather,175,1972,R,92,"An offer you can't refuse.",8,TheGodFather.jpg
-3,Pulp Fiction,154,1994,R,94,"You won't know the facts until you've seen the fiction.",13,Pulp-Fiction1.png
-4,The Dark Knight,152,2008,PG-13,90,"Why so serious?",2,DarkKnight.jpg
-5,Schindler's List,195,1993,R,89,"Whoever saves one life, saves the world entire.",1,Schindler.jpg
-6,Forrest Gump,142,1994,PG-13,82,"Life is like a box of chocolates.",4,ForrestGump.jpg
-7,Inception,148,2010,PG-13,88,"Your mind is the scene of the crime.",9,Inception.jpg
-8,The Matrix,136,1999,R,87,"Welcome to the real world.",9,The_Matrix.webp
-9,Fight Club,139,1999,R,86,"The first rule of Fight Club is: You do not talk about Fight Club.",10,FightClub.jpg
-10,Goodfellas,146,1990,R,88,"Three decades of life in the mafia.",6,GoodFellas.jpg
+movie_id,title,duration,year,age_rating,rank,summary,genre_id,poster_id,trailer_id
+1,The Shawshank Redemption,142,1994,R,93,"Two imprisoned men bond over several years, finding solace and eventual redemption through acts of common decency.",5,Shawshank.webp,NmzuHjWmXOc?si=_e58wdOckPWpXbDI
+2,The Godfather,175,1972,R,92,"An offer you can't refuse.",8,TheGodFather.jpg,sY1S34973zA?si=berqgkvhm3443BhT
+3,Pulp Fiction,154,1994,R,94,"You won't know the facts until you've seen the fiction.",13,Pulp-Fiction1.png,s7EdQ4FqbhY?si=dU9csSPBkkQedtnV
+4,The Dark Knight,152,2008,PG-13,90,"Why so serious?",2,DarkKnight.jpg,EXeTwQWrcwY?si=Ll_Xg2FevlxrM6Iz
+5,Schindler's List,195,1993,R,89,"Whoever saves one life, saves the world entire.",1,Schindler.jpg,gG22XNhtnoY?si=PCQnbkhpvCTD5i-O
+6,Forrest Gump,142,1994,PG-13,82,"Life is like a box of chocolates.",4,ForrestGump.jpg,XHhAG-YLdk8?si=4KmUCBHezC7Ifb3_
+7,Inception,148,2010,PG-13,88,"Your mind is the scene of the crime.",9,Inception.jpg,YoHD9XEInc0?si=b_LgEyeCVfIZp2Gt
+8,The Matrix,136,1999,R,87,"Welcome to the real world.",9,The_Matrix.webp,vKQi3bBA1y8?si=OTKAB7xVQYefhhWJ
+9,Fight Club,139,1999,R,86,"The first rule of Fight Club is: You do not talk about Fight Club.",10,FightClub.jpg,qtRKdVHc-cE?si=9a10mx7QtEC-_rzF
+10,Goodfellas,146,1990,R,88,"Three decades of life in the mafia.",6,GoodFellas.jpg,2ilzidi_J8Q?si=ytUXYvDecqqqbzgf
+11,The Lord of the Rings: The Two Towers,179,2002,PG-13,92,"The battle for Middle-earth, begins.",7,LordOfTheRings.jpg,V75dMMIW2B4?si=oGuoqXE6fL90Z3GR
+12,Avengers Endgame,142,1994,R,93,"Two imprisoned men bond over several years, finding solace and eventual redemption through acts of common decency.",5,Endgame.jpg,TcMBFSGVi1c?si=0PC9RcAoWhQIL3KG
+13,The Godfather: Part III,162,1990,R,89,"All the power on earth can't change destiny.",8,Godfather3.jfif,UUkG37KSWf0?si=92OeKaXo2c6u_aL0
+14,The Great Gatsby,143,2013,PG-13,80,"Can't repeat the past? Why of course you can!",12,TheGreatGatsby.jpg,rARN6agiW7o?si=8fB89vcf0SjlfBOV
+15,The Lion King,88,1994,G,90,"The circle of life.",3,lionking.jpg,7TavVZMewpY?si=Ppep3RpfgXqmN35b
+16,Casablanca,102,1942,PG,95,"Here's looking at you, kid.",6,Casablanca.webp,MF7JH_54d8c?si=0_O2yI5_ep7D3E87
+17,The Usual Suspects,106,1995,R,90,"The greatest trick the Devil ever pulled was convincing the world he didn't exist.",13,UsualSuspects.jpg,oiXdPolca5w?si=hR6cydHfvBJ93K5b
+18,Cars 2,142,1994,PG-13,82,"Life is like a box of chocolates.",4,Cars2.jpg,oFTfAdauCOo?si=Ar8Rdb5lZzMJCVhE
+19,The Princess Bride,98,1987,PG,88,"Prepare to die.",6,princess2.jpg,O3CIXEAjcc8?si=1yVRUoCW3m2NNWyT
+20,The Terminator,107,1984,R,89,"Your future is in his hands.",9,Terminator.jpg,k64P4l2Wmeg?si=fYvRzbRF2I37_2--
+21,Spirited Away,125,2001,PG,96,"Enter a world of pure imagination.",11,spiritedaway.jpg,ByXuk9QqQkk?si=x_ZPUctq7BwOsIuA
+22,The Shining,146,1980,R,87,"Heeere's Johnny!",5,TheShining.jpg,S014oGZiSdI?si=TlQV-rPw_jld4t1e
+23,Braveheart,178,1995,R,78,"They may take our lives, but they'll never take our freedom!",1,BraveHeart.jpg,1NJO0jxBtMo?si=smf1JwljrmiRMjEf
+24,The Social Network,120,2010,PG-13,88,"You don't get to 500 million friends without making a few enemies.",11,TheSocialNetwork.jpg,lB95KLmpLR4?si=xzka5kqbMmLaUpRT
+25,The Grand Budapest Hotel,99,2014,R,91,"A charming hotel, a stolen painting, a dead heiress.",7,TheGrandBudapest.jpg,zru-1DbbcsA?si=jMalAcpvJgZdxnXM

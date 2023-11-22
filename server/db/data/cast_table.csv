@@ -1,41 +1,51 @@
 cast_id,movie_id,actor_id,role
-1,5,2,Lead Role
-2,9,5,Supporting Role
-3,3,11,Main Character
-4,7,7,Cameo Appearance
-5,1,15,Antagonist
-6,2,20,Protagonist
-7,10,20,Lead Role
-8,8,8,Sidekick
-9,6,14,Supporting Role
-10,4,23,Villain
-11,7,9,Cameo Appearance
-12,2,19,Main Character
-13,1,4,Lead Role
-14,10,6,Antagonist
-15,5,37,Supporting Role
-16,3,17,Sidekick
-17,9,21,Main Character
-18,4,23,Antagonist
-19,8,10,Lead Role
-20,6,1,Supporting Role
-21,2,40,Cameo Appearance
-22,1,3,Protagonist
-23,7,12,Supporting Role
-24,3,29,Main Character
-25,10,13,Lead Role
-26,5,25,Sidekick
-27,9,18,Supporting Role
-28,8,36,Main Character
-29,6,24,Cameo Appearance
-30,4,30,Antagonist
-31,7,22,Lead Role
-32,2,27,Main Character
-33,1,16,Supporting Role
-34,10,33,Villain
-35,5,35,Lead Role
-36,3,31,Antagonist
-37,9,26,Supporting Role
-38,4,34,Main Character
-39,8,39,Protagonist
-40,6,38,Supporting Role
+1,12,5,Main Character
+2,6,20,Sidekick
+3,18,14,Protagonist
+4,3,7,Cameo Appearance
+5,25,15,Supporting Role
+6,9,10,Lead Role
+7,5,33,Villain
+8,14,2,Supporting Role
+9,22,19,Antagonist
+10,8,38,Main Character
+11,2,1,Lead Role
+12,17,30,Cameo Appearance
+13,11,22,Protagonist
+14,24,12,Supporting Role
+15,1,29,Antagonist
+16,19,8,Main Character
+17,13,25,Lead Role
+18,10,40,Sidekick
+19,23,37,Supporting Role
+20,15,11,Cameo Appearance
+21,7,24,Antagonist
+22,4,36,Main Character
+23,20,9,Lead Role
+24,25,16,Protagonist
+25,6,35,Supporting Role
+26,18,28,Main Character
+27,12,20,Lead Role
+28,3,32,Sidekick
+29,9,39,Supporting Role
+30,1,17,Antagonist
+31,25,26,Main Character
+32,14,31,Protagonist
+33,5,23,Supporting Role
+34,8,27,Cameo Appearance
+35,16,4,Lead Role
+36,22,34,Villain
+37,10,21,Main Character
+38,7,6,Lead Role
+39,19,18,Supporting Role
+40,24,13,Protagonist
+41,11,30,Antagonist
+42,2,38,Main Character
+43,21,19,Lead Role
+44,13,5,Sidekick
+45,4,10,Supporting Role
+46,23,29,Cameo Appearance
+47,17,12,Main Character
+48,6,31,Antagonist
+49,20,37,Lead Role
+50,15,24,Supporting Role

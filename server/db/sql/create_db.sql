@@ -10,6 +10,7 @@ CREATE TABLE `projectdb`.`movie` (
     `summary` MEDIUMTEXT NULL,
     `genre_id` INT NULL,
     `poster_id` VARCHAR(45) NULL,
+    `trailer_id` VARCHAR(45) NULL,
     PRIMARY KEY (`movie_id`)
 );
 
@@ -46,13 +47,7 @@ CREATE TABLE `projectdb`.`cast` (
     `movie_id` INT NOT NULL,
     `actor_id` INT NOT NULL,
     `role` VARCHAR(45) NULL,
-    INDEX `actor_id_idx` (`actor_id` ASC) VISIBLE,
-    INDEX `movie_id_idx` (`movie_id` ASC) VISIBLE,
-    PRIMARY KEY (`cast_id`),
-    FOREIGN KEY (`movie_id`)
-    REFERENCES `projectdb`.`movie` (`movie_id`),
-    FOREIGN KEY (`actor_id`)
-    REFERENCES `projectdb`.`actor` (`actor_id`)
+    PRIMARY KEY (`cast_id`)
 );
 
 CREATE TABLE `projectdb`.`directors` (
@@ -64,11 +59,5 @@ CREATE TABLE `projectdb`.`directors` (
 
 CREATE TABLE `projectdb`.`direct` (
     `director_id` INT NOT NULL,
-    `movie_id` INT NOT NULL,
-    INDEX `director_id_idx` (`director_id` ASC) VISIBLE,
-    INDEX `movie_id_idx` (`movie_id` ASC) VISIBLE,
-    FOREIGN KEY (`director_id`)
-    REFERENCES `projectdb`.`directors` (`director_id`),
-    FOREIGN KEY (`movie_id`)
-    REFERENCES `projectdb`.`movie` (`movie_id`)
+    `movie_id` INT NOT NULL
 );
