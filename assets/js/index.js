@@ -14,8 +14,8 @@ sidebar();
 // Home page sections (Top rated, Upcoming, Trending Movies)
 const homePageSections = [
     {
-        title: "Trending Movies",
-        path: "movies/trending",
+        title: "Newest Movies",
+        path: "movies/newest",
     },
     {
         title: "Top Rated Movies",
@@ -45,7 +45,7 @@ fetchDataFromServer(
         }
 
         fetchDataFromServer(
-            "movies",
+            "movies/random",
             heroBanner
         );
     }

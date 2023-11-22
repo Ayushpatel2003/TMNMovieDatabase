@@ -113,13 +113,19 @@ app.get('/movies', (req, res) => {
 });
 
 app.get('/movies/top_rated', (req, res) => {
-    db.query('SELECT * FROM movie', (err, rows) => {
+    db.query('SELECT * FROM movie ORDER BY movie.rank DESC LIMIT 10', (err, rows) => {
         res.json({ data: rows });
     });
 });
 
-app.get('/movies/trending', (req, res) => {
-    db.query('SELECT * FROM movie', (err, rows) => {
+app.get('/movies/newest', (req, res) => {
+    db.query('SELECT * FROM movie ORDER BY movie.year DESC LIMIT 10', (err, rows) => {
+        res.json({ data: rows });
+    });
+});
+
+app.get('/movies/random', (req, res) => {
+    db.query('SELECT * FROM movie ORDER BY RAND() DESC LIMIT 5', (err, rows) => {
         res.json({ data: rows });
     });
 });

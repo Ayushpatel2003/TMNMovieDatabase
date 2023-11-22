@@ -230,11 +230,11 @@ fetchDataFromServer(
 const addSuggestedMovies = function ({ data }) {
     const movieListElem = document.createElement("section");
     movieListElem.classList.add("movie-list");
-    movieListElem.ariaLabel = "You May Also Like";
+    movieListElem.ariaLabel = "Related movies";
 
     movieListElem.innerHTML = `
     <div class="title-wrapper">
-    <h3 class="title-large">You May Also Like</h3>
+    <h3 class="title-large">Related movies</h3>
     </div>
 
     <div class="slider-list">
