@@ -170,6 +170,24 @@
     };
 
     function signup() {
+      // Handle signup logic here
+      alert('Sign Up clicked!');
+
+      toggleForms();
+    }
+
+    function signin() {
+     // For simplicity, let's assume a successful login with the username 'user' and password 'password'
+     var enteredUsername = document.getElementById('signinUsername').value;
+      var enteredPassword = document.getElementById('signinPassword').value;
+
+      if (enteredUsername === 'user' && enteredPassword === 'password') {
+        alert('Login Successful!');
+        // Redirect to the home page (replace 'home.html' with your actual home page)
+        window.location.href = 'index.html';
+      } else {
+        alert('Login Failed. Please check your username and password.');
+      }
         const signupUsername = document.getElementById('signupUsername').value;
         const signupPassword = document.getElementById('signupPassword').value;
 
@@ -179,13 +197,19 @@
                 console.log(data);
             }
         );
-
-      toggleForms();
     }
 
     function signin() {
-      // Handle signin logic here
-      alert('Sign In clicked!');
+        const signinUsername = document.getElementById('signinUsername').value;
+        const signinPassword = document.getElementById('signinPassword').value;
+
+        postDataToServer(
+            "signin", JSON.stringify({ username: signinUsername, password: signinPassword }),
+            (data) => {
+                console.log(data);
+                // if (data.found)
+            }
+        );
     }
   </script>
 </body>
