@@ -22,8 +22,8 @@ CREATE TABLE `projectdb`.`actor` (
 
 CREATE TABLE `projectdb`.`users` (
     `user_id` INT NOT NULL,
-    `fname` VARCHAR(45) NULL,
-    `lname` VARCHAR(45) NULL,
+    `username` VARCHAR(45) NULL,
+    `password` VARCHAR(45) NULL,
     PRIMARY KEY (`user_id`)
 );
 
@@ -38,13 +38,7 @@ CREATE TABLE `projectdb`.`ratings` (
     `movie_id` INT NULL,
     `user_id` INT NULL,
     `review` INT NULL,
-    PRIMARY KEY (`rating_id`),
-    INDEX `movie_id_idx` (`movie_id` ASC) VISIBLE,
-    INDEX `user_id_idx` (`user_id` ASC) VISIBLE,
-    FOREIGN KEY (`movie_id`)
-    REFERENCES `projectdb`.`movie` (`movie_id`),
-    FOREIGN KEY (`user_id`)
-    REFERENCES `projectdb`.`users` (`user_id`)
+    PRIMARY KEY (`rating_id`)
 );
 
 CREATE TABLE `projectdb`.`cast` (
