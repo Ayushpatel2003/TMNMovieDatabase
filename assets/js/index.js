@@ -38,27 +38,20 @@ const genreList = {
 };
 
 fetchDataFromServer(
-    // `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}`,
     "genres",
     function ({data}) {
         for (const { genre_id, genre_name } of data) {
             genreList[genre_id] = genre_name;
         }
 
-        console.log(data);
         fetchDataFromServer(
-            // `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=1`,
             "movies",
             heroBanner
         );
-
-
-        // heroBanner(data);
     }
 );
 
 const heroBanner = function ({ data }) {
-    console.log(data);
     const banner = document.createElement("section");
     banner.classList.add("banner");
     banner.ariaLabel = "Popular Movies";
@@ -76,16 +69,6 @@ const heroBanner = function ({ data }) {
 
     for (var i=0; i<data.length; ++i){
         const movie = data[i];
-        // const {
-        //     backdrop_path,
-        //     title,
-        //     release_date,
-        //     genre_ids,
-        //     overview,
-        //     poster_path,
-        //     vote_average,
-        //     id,
-        // } = movie;
 
         const sliderItem = document.createElement("div");
         sliderItem.classList.add("slider-item");
@@ -192,8 +175,6 @@ const createMovieList = function ({ data }, title) {
     const movieListElem = document.createElement("section");
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel = `${title}`;
-
-    console.log(data);
 
     movieListElem.innerHTML = `
     <div class="title-wrapper">

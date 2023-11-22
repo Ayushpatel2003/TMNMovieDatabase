@@ -39,7 +39,6 @@ fetchDataFromServer(
         `;
 
         // add movie card based on fetched item
-        console.log(data);
         for (const movie of data) {
             const movieCard = createMovieCard(movie);
             movieListElem.querySelector(".grid-list").appendChild(movieCard);

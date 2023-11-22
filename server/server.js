@@ -67,13 +67,29 @@ app.get('/moviedetail', (req, res) => {
             SELECT * FROM actor WHERE actor_id IN (
                 SELECT cast_id FROM cast WHERE movie_id IN (${req.query.movie_id})
             );
-        `,
-        (err, castrows) => {
-            res.json({ moviedata: movierows, castdata: castrows});
-        })
+        `, (err, castrows) => {
+            db.query(`
+                SELECT * FROM directors WHERE director_id IN (
+                    SELECT director_id FROM direct WHERE movie_id IN (${req.query.movie_id})
+                );
+            `, (err, directrows) => {
+                db.query(`
+                    SELECT * FROM genre WHERE genre_id IN (
+                        SELECT genre_id FROM movie WHERE movie_id IN (${req.query.movie_id})
+                    );
+                `, (err, genrerows) => {
+                    res.json({
+                        moviedata: movierows,
+                        castdata: castrows,
+                        directorsdata: directrows,
+                        genredata: genrerows
+                    });
+                });
+            });
+        });
 
-    })}
-);
+    });
+});
 
 // Endpoint to retrieve data
 app.get('/genres', (req, res) => {
