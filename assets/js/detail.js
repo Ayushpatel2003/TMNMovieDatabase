@@ -15,144 +15,143 @@ const pageContent = document.querySelector("[page-content]");
 sidebar();
 
 const getGenres = function (genreList) {
-  const newGenreList = [];
+    const newGenreList = [];
 
-  for (const { name } of genreList) newGenreList.push(name);
-  return newGenreList.join(", ");
+    for (const { name } of genreList) newGenreList.push(name);
+    return newGenreList.join(", ");
 };
 
 const getCasts = function (castList) {
-  const newCastList = [];
+    const newCastList = [];
 
-  for (let i = 0, len = castList.length; i < len && len && i < 10; i++) {
-    const { name } = castList[i];
-    newCastList.push(name);
-  }
-  return newCastList.join(", ");
+    for (let i = 0, len = castList.length; i < len && len && i < 10; i++) {
+        const name = castList[i].fname + " " + castList[i].lname;
+        newCastList.push(name);
+    }
+    return newCastList.join(", ");
 };
 
 const getDirectors = function (crewList) {
-  const directors = crewList.filter(({ job }) => job === "Director");
+    const directors = crewList.filter(({ job }) => job === "Director");
 
-  const directorList = [];
-  for (const { name } of directors) directorList.push(name);
-  return directorList.join(", ");
+    const directorList = [];
+    for (const { name } of directors) directorList.push(name);
+    return directorList.join(", ");
 };
 
 // returns only trailers and teasers as array
 const filterVideos = function (videoList) {
-  return videoList.filter(
-    ({ type, site }) =>
-      (type === "Trailer" || type === "Teaser") && site === "Youtube"
-  );
+    return videoList.filter(
+        ({ type, site }) =>
+        (type === "Trailer" || type === "Teaser") && site === "Youtube"
+    );
 };
 
 fetchDataFromServer(
-  `moviedetail?movie_id=${movieId}`,
-  function ({moviedata, castdata}) {
-  
-    var movie = moviedata[0];
-  
-    
+    `moviedetail?movie_id=${movieId}`,
+    function ({moviedata, castdata}) {
+        console.log(moviedata, castdata);
+
+        const movie = moviedata[0];
+
+        document.title = `${movie.title} - TMN`;
+
+        const movieDetail = document.createElement("div");
+        movieDetail.classList.add("movie-detail");
+        movieDetail.innerHTML = `
+        <div
+        class="backdrop-image"
+        style="background-image: src=https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
+        </div>
+
+        <figure class="poster-box movie-poster">
+        <img
+        src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
+        alt="${movie.title} poster"
+        class="img-cover"
+        />
+        </figure>
+
+        <div class="detail-box">
+        <div class="detail-content">
+        <h1 class="heading">${movie.title}</h1>
+
+        <div class="meta-list">
+        <div class="meta-item">
+        <img
+        src="./assets/images/star.png"
+        width="20"
+        height="20"
+        alt="rating"
+        />
+        <span class="span">${movie.rank}</span>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="meta-item">${movie.duration}m</div>
+
+        <div class="separator"></div>
+
+        <div class="meta-item">${movie.year}</div>
+
+
+        </div>
+
+
+        <p class="overview">${movie.summary}</p>
+
+        <ul class="detail-list">
+        <div class="list-item">
+        <p class="list-name">Starring</p>
+        <p>${getCasts(castdata)}</p>
+        </div>
+
+        </div>
+
+        <div class="title-wrapper">
+        <h3 class="title-large">Trailer and Clips</h3>
+        </div>
+
+        <div class="slider-list">
+        <div class="slider-inner"></div>
+        </div>
+        </div>
+        `;
 
 
 
-  
+        pageContent.appendChild(movieDetail);
 
-    document.title = `${movie.title} - TMN`;
-
-    const movieDetail = document.createElement("div");
-    movieDetail.classList.add("movie-detail");
-    movieDetail.innerHTML = `
-                <div 
-                class="backdrop-image" 
-                style="background-image: src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}")"
-                </div>
-
-                <figure class="poster-box movie-poster">
-                <img
-                    src="src="https://raw.githubusercontent.com/Ayushpatel2003/TMNMovieDatabase/main/server/db/assets/${movie.poster_id}"
-                    alt="${movie.title} poster"
-                    class="img-cover"
-                />
-                </figure>
-
-                <div class="detail-box">
-                <div class="detail-content">
-                    <h1 class="heading">${movie.title}</h1>
-
-                    <div class="meta-list">
-                    <div class="meta-item">
-                        <img
-                        src="./assets/images/star.png"
-                        width="20"
-                        height="20"
-                        alt="rating"
-                        />
-                        <span class="span">${movie.rank}</span>
-                    </div>
-
-                    <div class="separator"></div>
-
-                    <div class="meta-item">${movie.duration}m</div>
-
-                    <div class="separator"></div>
-
-                    <div class="meta-item">${movie.year}</div>
-
-                    
-                    </div>
-
-                    
-
-                    <p class="overview">${movie.summary}</p>
-
-                    
-                </div>
-
-                <div class="title-wrapper">
-                    <h3 class="title-large">Trailer and Clips</h3>
-                </div>
-
-                <div class="slider-list">
-                    <div class="slider-inner"></div>
-                </div>
-                </div>
-    `;
-
-    
-
-    pageContent.appendChild(movieDetail);
-
-    // fetchDataFromServer(
-    //   `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${api_key}&page=1`,
-    //   addSuggestedMovies
-    // );
-  }
+        // fetchDataFromServer(
+        //   `https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=${api_key}&page=1`,
+        //   addSuggestedMovies
+        // );
+    }
 );
 
 const addSuggestedMovies = function ({ results: movieList }, title) {
-  const movieListElem = document.createElement("section");
-  movieListElem.classList.add("movie-list");
-  movieListElem.ariaLabel = "You May Also Like";
+    const movieListElem = document.createElement("section");
+    movieListElem.classList.add("movie-list");
+    movieListElem.ariaLabel = "You May Also Like";
 
-  movieListElem.innerHTML = `
+    movieListElem.innerHTML = `
     <div class="title-wrapper">
-      <h3 class="title-large">You May Also Like</h3>
+    <h3 class="title-large">You May Also Like</h3>
     </div>
 
     <div class="slider-list">
-      <div class="slider-inner"></div>
+    <div class="slider-inner"></div>
     </div>
-  `;
+    `;
 
-  for (const movie of movieList) {
-    // Called from movie_card.js
-    const movieCard = createMovieCard(movie);
+    for (const movie of movieList) {
+        // Called from movie_card.js
+        const movieCard = createMovieCard(movie);
 
-    movieListElem.querySelector(".slider-inner").appendChild(movieCard);
-  }
-  pageContent.appendChild(movieListElem);
+        movieListElem.querySelector(".slider-inner").appendChild(movieCard);
+    }
+    pageContent.appendChild(movieListElem);
 };
 
 search();

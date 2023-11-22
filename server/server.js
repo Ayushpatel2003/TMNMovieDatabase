@@ -61,16 +61,17 @@ app.post('/saveData', (req, res) => {
     res.json({ message: 'Data saved successfully' });
 });
 
-app.get('/moviedetail', (req, res) => { req.query.movie_id
-    
-    db.query(`SELECT * FROM movie WHERE movie_id= ${req.query.movie_id} ` , (err, movierows) => {
-        db.query(`SELECT * FROM actor
-        WHERE actor_id IN (
-            SELECT cast_id FROM cast
-            WHERE movie_id IN ${req.query.movie_id})
-        );`, (err, castrows) => {
-            res.json({ moviedata: movierows, castdata: castrows});})
-    
+app.get('/moviedetail', (req, res) => {
+    db.query(`SELECT * FROM movie WHERE movie_id IN (${req.query.movie_id})` , (err, movierows) => {
+        db.query(`
+            SELECT * FROM actor WHERE actor_id IN (
+                SELECT cast_id FROM cast WHERE movie_id IN (${req.query.movie_id})
+            );
+        `,
+        (err, castrows) => {
+            res.json({ moviedata: movierows, castdata: castrows});
+        })
+
     })}
 );
 
