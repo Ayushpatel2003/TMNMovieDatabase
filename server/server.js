@@ -130,6 +130,12 @@ app.get('/movies/random', (req, res) => {
     });
 });
 
+app.get('/movies/related', (req, res) => {
+    db.query('SELECT * FROM movie ORDER BY RAND() DESC LIMIT 5', (err, rows) => {
+        res.json({ data: rows });
+    });
+});
+
 app.get('/search', (req, res) => {
     const text = req.query.query;
     db.query(`SELECT * FROM movie WHERE title LIKE '%${text}%'`, (err, rows) => {
