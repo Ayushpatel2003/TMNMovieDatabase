@@ -35,7 +35,6 @@ function getUserProfile(){
             const user = data[0];
             const signin = document.getElementById("SignInButton");
             signin.innerHTML = user.username;
-            signin.href = "./user_profile.html"
         }
     );
 

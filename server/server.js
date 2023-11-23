@@ -162,7 +162,15 @@ app.get('/recents', (req, res) => {
 
 app.get('/search', (req, res) => {
     const text = req.query.query;
-    db.query(`SELECT * FROM movie WHERE title LIKE '%${text}%'`, (err, rows) => {
+    db.query(`
+        SELECT * FROM movie WHERE title LIKE '%${text}%'
+        UNION
+        SELECT * FROM movie WHERE movie_id IN (
+        	SELECT movie_id FROM direct WHERE director_id IN (
+        		SELECT director_id FROM directors WHERE fname LIKE '%${text}%'OR lname LIKE '%${text}%'
+        	)
+        );
+    `, (err, rows) => {
         res.json({ data: rows });
     });
 });
