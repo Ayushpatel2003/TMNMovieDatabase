@@ -2,7 +2,17 @@ const pageContent = document.querySelector("[page-content]");
 const movieId = window.localStorage.getItem("movieId");
 
 sidebar();
-getUserProfile();
+const userId = getUserProfile();
+
+
+postDataToServer(
+    "insertrecent", JSON.stringify({ user_id: userId, movie_id: movieId }),
+    (data) => {
+        console.log(data);
+    }
+);
+
+
 
 function getGenres(genreList) {
     const newGenreList = [];
@@ -140,9 +150,7 @@ const addSuggestedMovies = function ({ data }) {
     `;
 
     for (const movie of data) {
-        // Called from movie_card.js
         const movieCard = createMovieCard(movie);
-
         movieListElem.querySelector(".slider-inner").appendChild(movieCard);
     }
     pageContent.appendChild(movieListElem);

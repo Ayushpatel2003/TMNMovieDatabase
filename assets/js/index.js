@@ -1,11 +1,10 @@
 const pageContent = document.querySelector("[page-content]");
 
-
 sidebar();
-getUserProfile();
+const userId = getUserProfile();
 
 
-// Home page sections (Top rated, Upcoming, Trending Movies)
+// Home page sections
 const homePageSections = [
     {
         title: "Newest Movies",
@@ -13,6 +12,9 @@ const homePageSections = [
     }, {
         title: "Top Rated Movies",
         path: "movies/top_rated",
+    }, {
+        title: "Recently Viewed",
+        path: `recents?user_id=${userId}`,
     },
 ];
 
@@ -166,6 +168,8 @@ const addHeroSlide = function () {
 };
 
 const createMovieList = function ({ data }, title) {
+    if (data.length == 0)return;
+
     const movieListElem = document.createElement("section");
     movieListElem.classList.add("movie-list");
     movieListElem.ariaLabel = `${title}`;
@@ -181,7 +185,6 @@ const createMovieList = function ({ data }, title) {
     `;
 
     for (const movie of data) {
-        // Called from movie_card.js
         const movieCard = createMovieCard(movie);
         movieListElem.querySelector(".slider-inner").appendChild(movieCard);
     }

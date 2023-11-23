@@ -61,7 +61,14 @@ app.post('/signin', (req, res) => {
             res.json({ user_id: rows[0].user_id, found: true });
         }
     });
+});
 
+app.post('/insertrecent', (req, res) => {
+    const { movie_id, user_id } = req.body;
+
+    db.query(`INSERT INTO recents (\`user_id\`, \`movie_id\`) VALUES ('${user_id}', '${movie_id}')`, (err, rows) => {
+        res.json({ inserted: true });
+    });
 });
 
 app.get('/user', (req, res) => {
@@ -141,6 +148,14 @@ app.get('/movies/random', (req, res) => {
 
 app.get('/movies/related', (req, res) => {
     db.query('SELECT * FROM movie ORDER BY RAND() DESC LIMIT 5', (err, rows) => {
+        res.json({ data: rows });
+    });
+});
+
+app.get('/recents', (req, res) => {
+    db.query(`SELECT * FROM movie WHERE movie_id IN (
+    	SELECT movie_id FROM recents WHERE user_id IN (${req.query.user_id})
+    )`, (err, rows) => {
         res.json({ data: rows });
     });
 });

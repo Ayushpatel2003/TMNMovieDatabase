@@ -61,3 +61,8 @@ CREATE TABLE `projectdb`.`direct` (
     `director_id` INT NOT NULL,
     `movie_id` INT NOT NULL
 );
+
+CREATE TABLE `projectdb`.`recents` (
+    `user_id` INT NOT NULL,
+    `movie_id` INT NOT NULL
+);
